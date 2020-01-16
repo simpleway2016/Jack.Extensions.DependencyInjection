@@ -7,12 +7,15 @@ namespace Jack.Extensions.DependencyInjection
     public class DependencyInjectionAttribute : Attribute
     {
         public DependencyInjectionMode Mode { get; }
+        public Type RegisterType { get; }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="mode">类的注入模式</param>
-        public DependencyInjectionAttribute(DependencyInjectionMode mode = DependencyInjectionMode.Singleton)
+        /// <param name="registerType">注入为什么类型</param>
+        public DependencyInjectionAttribute(DependencyInjectionMode mode = DependencyInjectionMode.Singleton , Type registerType = null)
         {
+            this.RegisterType = registerType;
             this.Mode = mode;
         }
     }

@@ -12,10 +12,12 @@ namespace Jack.Extensions.DependencyInjection
     {
         IServiceCollection _services;
         IServiceProvider _provider;
-        public ServiceProvider(IServiceCollection services)
+        IServiceProvider _providerSelf;
+        public ServiceProvider(IServiceCollection services,IServiceProvider serviceProvider)
         {
             _services = services;
-            _provider = services.BuildServiceProvider();
+            _provider = serviceProvider;
+            _providerSelf = services.BuildServiceProvider();
         }
 
         static Type FuncBaseType = typeof(System.MulticastDelegate);
@@ -34,8 +36,10 @@ namespace Jack.Extensions.DependencyInjection
                 return SingletonInstances[serviceType];
 
 
-            var obj = _provider.GetService(serviceType);
-           
+            var obj = _provider?.GetService(serviceType);
+            if (obj == null)
+                obj = _providerSelf.GetService(serviceType);
+
             if (obj == null)
                 return null;
 

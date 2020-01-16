@@ -12,11 +12,11 @@ namespace UnitTestProject1
         {
             ServiceCollection services = new ServiceCollection();
 
+            var provider = services.BuildServiceProvider().GetJackServiceProvider();
 
-            var provider = services.GetJackServiceProvider();
             var t2 = provider.GetService<Test2>();
 
-           
+
         }
     }
 

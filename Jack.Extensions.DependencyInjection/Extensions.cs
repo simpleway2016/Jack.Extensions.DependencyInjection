@@ -13,11 +13,13 @@ public static class Jack_Extensions_DependencyInjection
     /// <example>
     /// [DependencyInjection]
     /// ICustom _custom;
-    /// </example>
+    /// </example>]
     /// <param name="services"></param>
+    /// <param name="serviceProvider">基础的服务提供者</param>
     /// <returns></returns>
-    public static IServiceProvider GetJackServiceProvider(this IServiceCollection services)
+    public static IServiceProvider GetJackServiceProvider(this IServiceCollection services, IServiceProvider serviceProvider = null)
     {
+
         var assemblies = AppDomain.CurrentDomain.GetAssemblies();
         foreach (var assembly in assemblies)
         {
@@ -29,16 +31,20 @@ public static class Jack_Extensions_DependencyInjection
                 {
                     if(attr != null)
                     {
+                        var registerType = type;
+                        if (attr.RegisterType != null)
+                            registerType = attr.RegisterType;
+
                         switch(attr.Mode)
                         {
                             case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Scoped:
-                                services.AddScoped(type);
+                                services.AddScoped(registerType);
                                 break;
                             case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Singleton:
-                                services.AddSingleton(type);
+                                services.AddSingleton(registerType);
                                 break;
                             case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Transient:
-                                services.AddTransient(type);
+                                services.AddTransient(registerType);
                                 break;
                         }
                     }
@@ -51,6 +57,6 @@ public static class Jack_Extensions_DependencyInjection
             }
         }
 
-        return new Jack.Extensions.DependencyInjection.ServiceProvider(services);
+        return new Jack.Extensions.DependencyInjection.ServiceProvider(services,  serviceProvider);
     }
 }
