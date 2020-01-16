@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 public static class Jack_Extensions_DependencyInjection
 {
+    static bool Builded = false;
     /// <summary>
     /// 获取IServiceProvider，支持字段采用[DependencyInjection]方式支持依赖注入，类如果使用[DependencyInjection(Singleton)]等属性，会被自动注入。
     /// 如果有些类是手动注入，那么，请在这些类全部注入后，再调用此方法。
@@ -15,47 +16,51 @@ public static class Jack_Extensions_DependencyInjection
     /// ICustom _custom;
     /// </example>]
     /// <param name="services"></param>
-    /// <param name="serviceProvider">基础的服务提供者</param>
-    /// <returns></returns>
-    public static IServiceProvider GetJackServiceProvider(this IServiceCollection services, IServiceProvider serviceProvider = null)
+    /// <param name="serviceProvider">基础的服务提供者。如果需要同时使用现有的provider，可以传进来，这样，可以保证serviceProvider和本组件的Provider创建的实例是一致的</param>
+    /// <returns>返回支持[DependencyInjection]方式的IServiceProvider</returns>
+    public static IServiceProvider BuildJackServiceProvider(this IServiceCollection services, IServiceProvider serviceProvider = null)
     {
-
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-        foreach (var assembly in assemblies)
+        if(!Builded)
         {
-            var types = assembly.GetTypes().Where(m => m.IsAbstract == false).ToArray();
-            foreach (var type in types)
+            Builded = true;
+            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+            foreach (var assembly in assemblies)
             {
-               var attr =  type.GetCustomAttribute<Jack.Extensions.DependencyInjection.DependencyInjectionAttribute>();
-                try
+                var types = assembly.GetTypes().Where(m => m.IsAbstract == false).ToArray();
+                foreach (var type in types)
                 {
-                    if(attr != null)
+                    var attr = type.GetCustomAttribute<Jack.Extensions.DependencyInjection.DependencyInjectionAttribute>();
+                    try
                     {
-                        var registerType = type;
-                        if (attr.RegisterType != null)
-                            registerType = attr.RegisterType;
-
-                        switch(attr.Mode)
+                        if (attr != null)
                         {
-                            case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Scoped:
-                                services.AddScoped(registerType);
-                                break;
-                            case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Singleton:
-                                services.AddSingleton(registerType);
-                                break;
-                            case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Transient:
-                                services.AddTransient(registerType);
-                                break;
-                        }
-                    }
-                    
-                }
-                catch
-                {
-                }
+                            var registerType = type;
+                            if (attr.RegisterType != null)
+                                registerType = attr.RegisterType;
 
+                            switch (attr.Mode)
+                            {
+                                case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Scoped:
+                                    services.AddScoped(registerType);
+                                    break;
+                                case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Singleton:
+                                    services.AddSingleton(registerType);
+                                    break;
+                                case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Transient:
+                                    services.AddTransient(registerType);
+                                    break;
+                            }
+                        }
+
+                    }
+                    catch
+                    {
+                    }
+
+                }
             }
         }
+        
 
         return new Jack.Extensions.DependencyInjection.ServiceProvider(services,  serviceProvider);
     }
