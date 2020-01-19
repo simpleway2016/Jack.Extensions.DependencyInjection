@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace WebApplication1.Controllers
 {
@@ -10,6 +11,10 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        public ValuesController(ILogger<ValuesController> _logger)
+        {
+            //Controller不通过IServiceProvider创建
+        }
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
