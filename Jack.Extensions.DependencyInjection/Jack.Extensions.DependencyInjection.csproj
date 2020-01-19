@@ -5,7 +5,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.0.1.1</Version>
     <PackageProjectUrl>https://github.com/simpleway2016/Jack.Extensions.DependencyInjection.git</PackageProjectUrl>
-    <Description>Startup中：
+    <Description>支持字段采用[DependencyInjection]方式支持依赖注入，类如果使用[DependencyInjection(Singleton)]等属性，会被自动注入。
+
+Startup中：
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
