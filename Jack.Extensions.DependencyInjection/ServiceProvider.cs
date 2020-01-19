@@ -13,11 +13,17 @@ namespace Jack.Extensions.DependencyInjection
         IServiceCollection _services;
         IServiceProvider _provider;
         IServiceProvider _providerSelf;
+
         public ServiceProvider(IServiceCollection services,IServiceProvider serviceProvider)
         {
             _services = services;
             _provider = serviceProvider;
-            _providerSelf = services.BuildServiceProvider();
+            
+        }
+
+        public void Init()
+        {
+            _providerSelf = _services.BuildServiceProvider();
         }
 
         static Type FuncBaseType = typeof(System.MulticastDelegate);
@@ -54,45 +60,7 @@ namespace Jack.Extensions.DependencyInjection
 
             if (need2add || desc.Lifetime != ServiceLifetime.Singleton)
             {
-                var fields = obj.GetType().GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
-                foreach (var field in fields)
-                {
-                    if (field.GetCustomAttribute<DependencyInjectionAttribute>() != null)
-                    {
-                        var val = field.GetValue(obj);
-
-                        //if (field.FieldType.BaseType == FuncBaseType && field.FieldType.Name == "Func`1")
-                        //{
-                        //    
-                        //    if (val == null)
-                        //    {
-                        //        var targetType = field.FieldType.GenericTypeArguments[0];
-                        //        if (FuncDelegates.ContainsKey(targetType))
-                        //        {
-                        //            field.SetValue(obj, FuncDelegates[targetType]);
-                        //        }
-                        //        else
-                        //        {
-                        //            var method = MyType.GetMethod("_getobj", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                        //            var expression = Expression.Call(Expression.Constant(this), method, Expression.Constant(targetType));
-                        //            var expression2 = Expression.Convert(expression, targetType);
-                        //            LambdaExpression lambdaExpression = Expression.Lambda(expression2, new ParameterExpression[0]);
-                        //            Delegate @delegate = lambdaExpression.Compile();
-                        //            FuncDelegates[targetType] = @delegate;
-
-                        //            field.SetValue(obj, @delegate);
-                        //        }
-                        //    }
-
-                        //}
-                        //else
-
-                        if (val == null)
-                        {
-                            field.SetValue(obj, GetService(field.FieldType));
-                        }
-                    }
-                }
+                setFields(obj);
             }
 
             if (need2add)
@@ -104,6 +72,49 @@ namespace Jack.Extensions.DependencyInjection
             }
 
             return obj;
+        }
+
+        internal void setFields(object obj)
+        {
+            var fields = obj.GetType().GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            foreach (var field in fields)
+            {
+                if (field.GetCustomAttribute<DependencyInjectionAttribute>() != null)
+                {
+                    var val = field.GetValue(obj);
+
+                    //if (field.FieldType.BaseType == FuncBaseType && field.FieldType.Name == "Func`1")
+                    //{
+                    //    
+                    //    if (val == null)
+                    //    {
+                    //        var targetType = field.FieldType.GenericTypeArguments[0];
+                    //        if (FuncDelegates.ContainsKey(targetType))
+                    //        {
+                    //            field.SetValue(obj, FuncDelegates[targetType]);
+                    //        }
+                    //        else
+                    //        {
+                    //            var method = MyType.GetMethod("_getobj", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                    //            var expression = Expression.Call(Expression.Constant(this), method, Expression.Constant(targetType));
+                    //            var expression2 = Expression.Convert(expression, targetType);
+                    //            LambdaExpression lambdaExpression = Expression.Lambda(expression2, new ParameterExpression[0]);
+                    //            Delegate @delegate = lambdaExpression.Compile();
+                    //            FuncDelegates[targetType] = @delegate;
+
+                    //            field.SetValue(obj, @delegate);
+                    //        }
+                    //    }
+
+                    //}
+                    //else
+
+                    if (val == null)
+                    {
+                        field.SetValue(obj, GetService(field.FieldType));
+                    }
+                }
+            }
         }
 
         object _getobj(Type targetType)

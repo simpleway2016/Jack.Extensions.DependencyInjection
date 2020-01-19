@@ -12,17 +12,19 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        TestObject _t1;
+        [Jack.Extensions.DependencyInjection.DependencyInjection]
+        TestObject _t2;
         public ValuesController(TestObject t)
         {
-            //Controller不通过IServiceProvider创建
-            var p = Startup.ServiceProvider.GetService<TestObject>();
-            var c = p == t;
+            _t1 = t;
         }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<object>> Get()
         {
-            return new string[] { "value1", "value2" };
+
+            return new object[] { "value1", _t1 == _t2 };
         }
 
         // GET api/values/5

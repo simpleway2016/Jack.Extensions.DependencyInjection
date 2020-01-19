@@ -4,6 +4,10 @@ using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Reflection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Jack.Extensions.DependencyInjection;
+
 public static class Jack_Extensions_DependencyInjection
 {
     static bool Builded = false;
@@ -60,8 +64,19 @@ public static class Jack_Extensions_DependencyInjection
                 }
             }
         }
-        
 
-        return new Jack.Extensions.DependencyInjection.ServiceProvider(services,  serviceProvider);
+
+        var oldProvider = services.BuildServiceProvider();
+        var oldControllerActivator = oldProvider.GetService<IControllerActivator>();
+        if (oldControllerActivator != null)
+        {
+            services.AddSingleton<ControllerActivatorOriginal>(new ControllerActivatorOriginal() { Original = oldControllerActivator });
+
+            services.Replace(ServiceDescriptor.Transient<IControllerActivator, Jack.Extensions.DependencyInjection.ControllerActivator>());
+        }
+        var provider = new Jack.Extensions.DependencyInjection.ServiceProvider(services,  serviceProvider);
+        services.AddSingleton<Jack.Extensions.DependencyInjection.ServiceProvider>(provider);
+        provider.Init();
+        return provider;
     }
 }
