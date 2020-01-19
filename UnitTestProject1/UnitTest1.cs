@@ -14,7 +14,7 @@ namespace UnitTestProject1
 
             var provider = services.BuildJackServiceProvider();
 
-            var t2 = provider.GetService<a1<string>>();
+            var t2 = provider.GetService<Test>();
 
 
         }
@@ -29,11 +29,10 @@ namespace UnitTestProject1
     [DependencyInjection]
     class Test
     {
-        [DependencyInjection]
-        protected Test t0;
+        a1<string> t0 { get; set; }
     }
 
-    [DependencyInjection( DependencyInjectionMode.Transient)]
+    [DependencyInjection( DependencyInjectionMode.Singleton , registerType:typeof(Test))]
     class Test2:Test
     {
         [DependencyInjection]

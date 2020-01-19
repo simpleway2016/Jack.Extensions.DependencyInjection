@@ -115,6 +115,31 @@ namespace Jack.Extensions.DependencyInjection
                     }
                 }
             }
+
+            var pros = obj.GetType().GetProperties(System.Reflection.BindingFlags.Public | BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            foreach( var pro in pros )
+            {
+                try
+                {
+                    if (pro.GetValue(obj) != null)
+                        continue;
+                }
+                catch (Exception)
+                {
+                    continue;
+                }
+
+                var val = GetService(pro.PropertyType);
+                if (val != null)
+                {
+                    var method = pro.GetSetMethod(true);
+                    if (method != null)
+                    {
+                        method.Invoke(obj, new object[] { val });
+                    }
+                }
+
+            }
         }
 
         object _getobj(Type targetType)
