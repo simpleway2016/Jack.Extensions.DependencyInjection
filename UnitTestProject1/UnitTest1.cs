@@ -14,7 +14,7 @@ namespace UnitTestProject1
 
             var provider = services.BuildJackServiceProvider();
 
-            var t2 = provider.GetService<Test2>();
+            var t2 = provider.GetService<a1<string>>();
 
 
         }
@@ -22,7 +22,7 @@ namespace UnitTestProject1
 
 
     [DependencyInjection]
-    class a1
+    class a1<T>
     {
     }
 
