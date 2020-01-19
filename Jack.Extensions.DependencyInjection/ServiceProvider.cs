@@ -28,7 +28,6 @@ namespace Jack.Extensions.DependencyInjection
 
         public object GetService(Type serviceType)
         {
-
             var desc = _services.FirstOrDefault(m => m.ServiceType == serviceType);
             if(desc == null && serviceType.IsGenericType)
             {

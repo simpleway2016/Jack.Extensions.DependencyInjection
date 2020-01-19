@@ -15,6 +15,7 @@ namespace WebApplication1
 {
     public class Startup
     {
+        public static IServiceProvider ServiceProvider;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -26,7 +27,8 @@ namespace WebApplication1
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            return services.BuildJackServiceProvider();
+            ServiceProvider = services.BuildJackServiceProvider();
+            return ServiceProvider;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

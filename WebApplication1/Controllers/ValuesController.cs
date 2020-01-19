@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace WebApplication1.Controllers
 {
@@ -11,9 +12,11 @@ namespace WebApplication1.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-        public ValuesController(ILogger<ValuesController> _logger)
+        public ValuesController(TestObject t)
         {
             //Controller不通过IServiceProvider创建
+            var p = Startup.ServiceProvider.GetService<TestObject>();
+            var c = p == t;
         }
         // GET api/values
         [HttpGet]
