@@ -4,6 +4,15 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>1.0.1.1</Version>
+    <PackageProjectUrl>https://github.com/simpleway2016/Jack.Extensions.DependencyInjection.git</PackageProjectUrl>
+    <Description>Startup中：
+
+        public IServiceProvider ConfigureServices(IServiceCollection services)
+        {
+             //your codes here ...
+
+            return services.BuildJackServiceProvider();
+        }</Description>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
