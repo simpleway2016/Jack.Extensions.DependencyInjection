@@ -12,7 +12,7 @@ using Jack.Extensions.DependencyInjection;
         
         
 需要注入的类：
-[DependencyInjection( DependencyInjectionMode.Singleton , typeof(IUser))]
+[DependencyInjection( DependencyInjectionMode.Transient , typeof(IUser))]
 class UserInfo : IUser
 {
     ...
