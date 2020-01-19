@@ -7,6 +7,7 @@ using Jack.Extensions.DependencyInjection;
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            services.SupportController();
             return services.BuildJackServiceProvider();
         }
         
