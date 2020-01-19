@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Jack.Extensions.DependencyInjection\Jack.Extensions.DependencyInjection.csproj" />
+    <ProjectReference Include="..\Jack.Extensions.DependencyInjection.AspNetCore\Jack.Extensions.DependencyInjection.AspNetCore.csproj" />
   </ItemGroup>
 
 </Project>

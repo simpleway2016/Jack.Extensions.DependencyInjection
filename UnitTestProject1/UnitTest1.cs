@@ -32,7 +32,7 @@ namespace UnitTestProject1
         a1<string> t0 { get; set; }
     }
 
-    [DependencyInjection( DependencyInjectionMode.Singleton , registerType:typeof(Test))]
+    [DependencyInjection( DependencyInjectionMode.Transient )]
     class Test2:Test
     {
         [DependencyInjection]

@@ -20,7 +20,7 @@ namespace Jack.Extensions.DependencyInjection
         public object Create(ControllerContext actionContext)
         {
             var controller = _oldDesc.Original.Create(actionContext);
-            _serviceProvider.setFields(controller);
+            _serviceProvider.InitFieldsAndProperties(controller);
             return controller;
         }
 

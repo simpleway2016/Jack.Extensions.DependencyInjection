@@ -27,6 +27,7 @@ namespace WebApplication1
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.SupportController();
             ServiceProvider = services.BuildJackServiceProvider();
             return ServiceProvider;
         }

@@ -60,7 +60,7 @@ namespace Jack.Extensions.DependencyInjection
 
             if (need2add || desc.Lifetime != ServiceLifetime.Singleton)
             {
-                setFields(obj);
+                InitFieldsAndProperties(obj);
             }
 
             if (need2add)
@@ -74,7 +74,7 @@ namespace Jack.Extensions.DependencyInjection
             return obj;
         }
 
-        internal void setFields(object obj)
+        public void InitFieldsAndProperties(object obj)
         {
             var fields = obj.GetType().GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
             foreach (var field in fields)
