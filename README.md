@@ -1,5 +1,5 @@
 # Jack.Extensions.DependencyInjection
-
+```
 asp.net core中：
 
 startup.cs
@@ -36,3 +36,4 @@ class MyController : ControllerBase
     
     Company _Company2;   //这里不被注入
 }
+```
