@@ -23,9 +23,12 @@ public static class Jack_Extensions_DependencyInjection
     /// <returns>返回支持[DependencyInjection]方式的IServiceProvider</returns>
     public static IServiceProvider BuildJackServiceProvider(this IServiceCollection services, IServiceProvider serviceProvider = null)
     {
-        if(!Builded)
+        List<Type> createInstanceTypes = new List<Type>();
+
+        if (!Builded)
         {
             Builded = true;
+           
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
             foreach (var assembly in assemblies)
             {
@@ -48,6 +51,9 @@ public static class Jack_Extensions_DependencyInjection
                                     break;
                                 case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Singleton:
                                     services.AddSingleton(registerType);
+                                    if (attr.CreateInstanceOnSingleton)
+                                        createInstanceTypes.Add(registerType);
+
                                     break;
                                 case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Transient:
                                     services.AddTransient(registerType);
@@ -67,6 +73,10 @@ public static class Jack_Extensions_DependencyInjection
         var provider = new Jack.Extensions.DependencyInjection.ServiceProvider(services,  serviceProvider);
         services.AddSingleton<Jack.Extensions.DependencyInjection.ServiceProvider>(provider);
         provider.Init();
+
+        foreach (var t in createInstanceTypes)
+            provider.GetService(t);
+
         return provider;
     }
 }
