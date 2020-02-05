@@ -4,6 +4,12 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/simpleway2016/Jack.Extensions.DependencyInjection.git</PackageProjectUrl>
+    <Version>1.0.0.1</Version>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Jack.Extensions.DependencyInjection.AspNetCore.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
