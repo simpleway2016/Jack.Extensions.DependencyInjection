@@ -7,20 +7,20 @@ namespace Jack.Extensions.DependencyInjection
     public class DependencyInjectionAttribute : Attribute
     {
         public DependencyInjectionMode Mode { get; }
-        public Type RegisterType { get; }
+        public Type RegisterType { get; internal set; }
 
-        public bool CreateInstanceOnSingleton { get; }
+        public string ExcuMethodOnSingleton { get; }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="mode">类的注入模式</param>
         /// <param name="registerType">注入为什么类型</param>
-        ///  <param name="createInstanceOnSingleton">如果是Singleton，是否注入后，自动实例化</param>
-        public DependencyInjectionAttribute(DependencyInjectionMode mode = DependencyInjectionMode.Singleton , Type registerType = null, bool createInstanceOnSingleton = false)
+        ///  <param name="excuMethodOnSingleton">自动执行的方法名称。如果是Singleton，是否注入后，自动实例化，并执行这个方法。</param>
+        public DependencyInjectionAttribute(DependencyInjectionMode mode = DependencyInjectionMode.Singleton , Type registerType = null, string excuMethodOnSingleton = null)
         {
             this.RegisterType = registerType;
             this.Mode = mode;
-            this.CreateInstanceOnSingleton = createInstanceOnSingleton;
+            this.ExcuMethodOnSingleton = excuMethodOnSingleton;
         }
     }
 

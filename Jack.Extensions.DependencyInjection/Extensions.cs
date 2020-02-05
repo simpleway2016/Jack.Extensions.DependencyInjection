@@ -23,7 +23,7 @@ public static class Jack_Extensions_DependencyInjection
     /// <returns>返回支持[DependencyInjection]方式的IServiceProvider</returns>
     public static IServiceProvider BuildJackServiceProvider(this IServiceCollection services, IServiceProvider serviceProvider = null)
     {
-        List<Type> createInstanceTypes = new List<Type>();
+       var createInstanceTypes = new List<Jack.Extensions.DependencyInjection.DependencyInjectionAttribute>();
 
         if (!Builded)
         {
@@ -47,16 +47,19 @@ public static class Jack_Extensions_DependencyInjection
                             switch (attr.Mode)
                             {
                                 case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Scoped:
-                                    services.AddScoped(registerType);
+                                    services.AddScoped(registerType, type);
                                     break;
                                 case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Singleton:
-                                    services.AddSingleton(registerType);
-                                    if (attr.CreateInstanceOnSingleton)
-                                        createInstanceTypes.Add(registerType);
+                                    services.AddSingleton( registerType , type);
+                                    if (!string.IsNullOrEmpty(attr.ExcuMethodOnSingleton))
+                                    {
+                                        attr.RegisterType = registerType;
+                                        createInstanceTypes.Add(attr);
+                                    }
 
                                     break;
                                 case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Transient:
-                                    services.AddTransient(registerType);
+                                    services.AddTransient(registerType, type);
                                     break;
                             }
                         }
@@ -75,7 +78,13 @@ public static class Jack_Extensions_DependencyInjection
         provider.Init();
 
         foreach (var t in createInstanceTypes)
-            provider.GetService(t);
+        {
+            var obj = provider.GetService(t.RegisterType);
+            var method = obj.GetType().GetMethod(t.ExcuMethodOnSingleton, BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+            if (method == null)
+                throw new Exception($"can not find {t.ExcuMethodOnSingleton} in {obj.GetType().FullName}");
+            method.Invoke(obj, null);
+        }
 
         return provider;
     }

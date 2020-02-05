@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace WebApplication1
 {
-    [DependencyInjection(createInstanceOnSingleton:true)]
+    [DependencyInjection(excuMethodOnSingleton:"start")]
     public class TestObject
     {
         public TestObject()
+        {
+
+        }
+
+        void start()
         {
 
         }
