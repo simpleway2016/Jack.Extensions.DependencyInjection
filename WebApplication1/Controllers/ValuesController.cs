@@ -8,8 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace WebApplication1.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [Route("api/[controller]/[action]")]
     public class ValuesController : ControllerBase
     {
         TestObject _t1;
@@ -21,35 +20,11 @@ namespace WebApplication1.Controllers
         }
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<object>> Get()
+        public ActionResult<IEnumerable<object>> GetName([FromQuery]string key)
         {
 
-            return new object[] { "value1", _t1 == _t2 };
+            return new object[] { "value1", _t1 == _t2,key };
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
