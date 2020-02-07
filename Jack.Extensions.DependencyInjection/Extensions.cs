@@ -19,18 +19,20 @@ public static class Jack_Extensions_DependencyInjection
     /// ICustom _custom;
     /// </example>]
     /// <param name="services"></param>
+    /// <param name="scanAssemblies">指定扫描的程序集，如果不指定，则扫描所有已经加载的程序集</param>
     /// <param name="serviceProvider">基础的服务提供者。如果需要同时使用现有的provider，可以传进来，这样，可以保证serviceProvider和本组件的Provider创建的实例是一致的</param>
     /// <returns>返回支持[DependencyInjection]方式的IServiceProvider</returns>
-    public static IServiceProvider BuildJackServiceProvider(this IServiceCollection services, IServiceProvider serviceProvider = null)
+    public static IServiceProvider BuildJackServiceProvider(this IServiceCollection services,params Assembly[] scanAssemblies )
     {
-       var createInstanceTypes = new List<Jack.Extensions.DependencyInjection.DependencyInjectionAttribute>();
+        var createInstanceTypes = new List<Jack.Extensions.DependencyInjection.DependencyInjectionAttribute>();
 
         if (!Builded)
         {
             Builded = true;
-           
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            foreach (var assembly in assemblies)
+
+            if(scanAssemblies == null || scanAssemblies.Length == 0)
+                scanAssemblies = AppDomain.CurrentDomain.GetAssemblies();
+            foreach (var assembly in scanAssemblies)
             {
                 var types = assembly.GetTypes().Where(m => m.IsAbstract == false).ToArray();
                 foreach (var type in types)
@@ -50,7 +52,7 @@ public static class Jack_Extensions_DependencyInjection
                                     services.AddScoped(registerType, type);
                                     break;
                                 case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Singleton:
-                                    services.AddSingleton( registerType , type);
+                                    services.AddSingleton(registerType, type);
                                     if (!string.IsNullOrEmpty(attr.ExcuMethodOnSingleton))
                                     {
                                         attr.RegisterType = registerType;
@@ -73,7 +75,7 @@ public static class Jack_Extensions_DependencyInjection
             }
         }
 
-        var provider = new Jack.Extensions.DependencyInjection.ServiceProvider(services,  serviceProvider);
+        var provider = new Jack.Extensions.DependencyInjection.ServiceProvider(services, null);
         services.AddSingleton<Jack.Extensions.DependencyInjection.ServiceProvider>(provider);
         provider.Init();
 
