@@ -25,12 +25,27 @@ class Company
     ...
 }
 
+[DependencyInjection]
+public class TestObject
+{
+
+     [StartupOnSingleton]
+     void startup()
+     {
+
+     }
+}
+    
+    
+
 //使用依赖注入
 [Route("api/[controller]")]
 [ApiController]
 class MyController : ControllerBase
 {
     IUser User {get;set;} //这里会被注入
+    
+    TestObject TestObj {get;set;} //这里会被注入，并且注入后，自动执行TestObj.startup()
     
     [DependencyInjection]
     Company _Company;      //这个字段因为标注了[DependencyInjection]，也会被注入
