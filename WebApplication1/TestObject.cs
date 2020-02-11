@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication1
 {
-    [DependencyInjection(excuMethodOnSingleton:"start")]
+    [DependencyInjection]
     public class TestObject
     {
         public TestObject()
@@ -14,6 +14,7 @@ namespace WebApplication1
 
         }
 
+        [StartupOnSingleton]
         void start()
         {
 

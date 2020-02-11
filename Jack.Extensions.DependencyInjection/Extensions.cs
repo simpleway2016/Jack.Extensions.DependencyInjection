@@ -24,6 +24,7 @@ public static class Jack_Extensions_DependencyInjection
     public static IServiceProvider BuildJackServiceProvider(this IServiceCollection services,params Assembly[] scanAssemblies )
     {
         var createInstanceTypes = new List<Jack.Extensions.DependencyInjection.DependencyInjectionAttribute>();
+        var createInstanceMethods = new List<Jack.Extensions.DependencyInjection.DependencyInjectionAttribute>();
 
         if (!Builded)
         {
@@ -57,7 +58,16 @@ public static class Jack_Extensions_DependencyInjection
                                         attr.RegisterType = registerType;
                                         createInstanceTypes.Add(attr);
                                     }
-
+                                    else
+                                    {
+                                       var methodinfo =  type.GetMethods(BindingFlags.Public|BindingFlags.NonPublic|BindingFlags.Instance).Where(m => m.GetCustomAttribute<StartupOnSingletonAttribute>() != null).FirstOrDefault();
+                                        if (methodinfo != null)
+                                        {
+                                            attr.RegisterType = registerType;
+                                            attr.StartupMethod = methodinfo;
+                                            createInstanceMethods.Add(attr);
+                                        }
+                                    }
                                     break;
                                 case Jack.Extensions.DependencyInjection.DependencyInjectionMode.Transient:
                                     services.AddTransient(registerType, type);
@@ -86,7 +96,11 @@ public static class Jack_Extensions_DependencyInjection
                 throw new Exception($"can not find {t.ExcuMethodOnSingleton} in {obj.GetType().FullName}");
             method.Invoke(obj, null);
         }
-
+        foreach (var t in createInstanceMethods)
+        {
+            var obj = provider.GetService(t.RegisterType);            
+            t.StartupMethod.Invoke(obj, null);
+        }
         return provider;
     }
 }
