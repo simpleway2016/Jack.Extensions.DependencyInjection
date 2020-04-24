@@ -37,9 +37,9 @@ public static class Jack_Extensions_DependencyInjection
                 var types = assembly.GetTypes().Where(m => m.IsAbstract == false).ToArray();
                 foreach (var type in types)
                 {
-                    var attr = type.GetCustomAttribute<Jack.Extensions.DependencyInjection.DependencyInjectionAttribute>();
                     try
                     {
+                        var attr = type.GetCustomAttribute<Jack.Extensions.DependencyInjection.DependencyInjectionAttribute>();
                         if (attr != null)
                         {
                             var registerType = type;
