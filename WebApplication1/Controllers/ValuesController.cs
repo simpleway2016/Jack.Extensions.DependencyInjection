@@ -13,7 +13,13 @@ namespace WebApplication1.Controllers
     public class ValuesController : ControllerBase
     {
         [DependencyInjection]
-        static TestObject _t1;
+        static TestObject t3;
+
+        TestObject _t1
+        {
+            get;
+            set;
+        }
         [Jack.Extensions.DependencyInjection.DependencyInjection]
         TestObject _t2;
         public ValuesController()

@@ -99,6 +99,10 @@ namespace Jack.Extensions.DependencyInjection
             var pros = obj.GetType().GetProperties(System.Reflection.BindingFlags.Public | BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
             foreach( var pro in pros )
             {
+                var method = pro.GetSetMethod(true);
+                if (method == null)
+                    continue;
+
                 try
                 {
                     if (pro.GetValue(obj) != null)
@@ -112,7 +116,7 @@ namespace Jack.Extensions.DependencyInjection
                 var val = GetService(pro.PropertyType);
                 if (val != null)
                 {
-                    var method = pro.GetSetMethod(true);
+                   
                     if (method != null)
                     {
                         method.Invoke(obj, new object[] { val });
