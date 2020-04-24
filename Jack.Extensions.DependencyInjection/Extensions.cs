@@ -11,7 +11,8 @@ public static class Jack_Extensions_DependencyInjection
 {
     static bool Builded = false;
     /// <summary>
-    /// 获取IServiceProvider，支持字段采用[DependencyInjection]方式支持依赖注入，支持属性依赖注入，类如果使用[DependencyInjection(Singleton)]等属性，会被自动注入。
+    /// 获取IServiceProvider，支持字段采用[DependencyInjection]方式支持依赖注入，支持属性依赖注入，支持静态字段采用[DependencyInjection]依赖注入
+    /// 类如果使用[DependencyInjection(Singleton)]等属性，会被自动注入。
     /// 如果有些类是手动注入，那么，请在这些类全部注入后，再调用此方法。
     /// </summary>
     /// <example>

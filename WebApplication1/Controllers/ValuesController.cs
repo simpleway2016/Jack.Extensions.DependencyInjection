@@ -5,18 +5,19 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
+using Jack.Extensions.DependencyInjection;
 
 namespace WebApplication1.Controllers
 {
     [Route("api/[controller]/[action]")]
     public class ValuesController : ControllerBase
     {
-        TestObject _t1;
+        [DependencyInjection]
+        static TestObject _t1;
         [Jack.Extensions.DependencyInjection.DependencyInjection]
         TestObject _t2;
-        public ValuesController(TestObject t)
+        public ValuesController()
         {
-            _t1 = t;
         }
         // GET api/values
         [HttpGet]

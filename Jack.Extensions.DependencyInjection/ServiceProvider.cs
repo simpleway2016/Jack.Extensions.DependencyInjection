@@ -79,41 +79,21 @@ namespace Jack.Extensions.DependencyInjection
             var fields = obj.GetType().GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
             foreach (var field in fields)
             {
-                if (field.GetCustomAttribute<DependencyInjectionAttribute>() != null)
+                try
                 {
-                    var val = field.GetValue(obj);
-
-                    //if (field.FieldType.BaseType == FuncBaseType && field.FieldType.Name == "Func`1")
-                    //{
-                    //    
-                    //    if (val == null)
-                    //    {
-                    //        var targetType = field.FieldType.GenericTypeArguments[0];
-                    //        if (FuncDelegates.ContainsKey(targetType))
-                    //        {
-                    //            field.SetValue(obj, FuncDelegates[targetType]);
-                    //        }
-                    //        else
-                    //        {
-                    //            var method = MyType.GetMethod("_getobj", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                    //            var expression = Expression.Call(Expression.Constant(this), method, Expression.Constant(targetType));
-                    //            var expression2 = Expression.Convert(expression, targetType);
-                    //            LambdaExpression lambdaExpression = Expression.Lambda(expression2, new ParameterExpression[0]);
-                    //            Delegate @delegate = lambdaExpression.Compile();
-                    //            FuncDelegates[targetType] = @delegate;
-
-                    //            field.SetValue(obj, @delegate);
-                    //        }
-                    //    }
-
-                    //}
-                    //else
-
-                    if (val == null)
+                    if (field.GetCustomAttribute<DependencyInjectionAttribute>() != null)
                     {
-                        field.SetValue(obj, GetService(field.FieldType));
+                        var val = field.GetValue(obj);
+                        if (val == null)
+                        {
+                            field.SetValue(obj, GetService(field.FieldType));
+                        }
                     }
                 }
+                catch
+                {
+                }
+              
             }
 
             var pros = obj.GetType().GetProperties(System.Reflection.BindingFlags.Public | BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
@@ -139,6 +119,26 @@ namespace Jack.Extensions.DependencyInjection
                     }
                 }
 
+            }
+
+            //静态字段
+            fields = obj.GetType().GetFields(System.Reflection.BindingFlags.Public | BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+            foreach (var field in fields)
+            {
+                try
+                {
+                    if (field.GetCustomAttribute<DependencyInjectionAttribute>() != null)
+                    {
+                        var val = field.GetValue(obj);
+                        if (val == null)
+                        {
+                            field.SetValue(null, GetService(field.FieldType));
+                        }
+                    }
+                }
+                catch
+                {
+                }
             }
         }
 
