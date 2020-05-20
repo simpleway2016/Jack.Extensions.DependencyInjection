@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/simpleway2016/Jack.Extensions.DependencyInjection.git</PackageProjectUrl>
-    <Version>1.0.0.8</Version>
+    <Version>1.0.1.0</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

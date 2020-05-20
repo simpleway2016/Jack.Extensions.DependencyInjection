@@ -11,6 +11,7 @@ namespace WebApplication3_0.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
+        TestObject2 _testObject2 { get; set; }
         TestObject _testObj { get; set; }
         [Jack.Extensions.DependencyInjection.DependencyInjection]
         TestObject obj2;

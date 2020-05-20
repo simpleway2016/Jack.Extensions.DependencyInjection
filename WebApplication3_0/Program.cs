@@ -18,7 +18,7 @@ namespace WebApplication3_0
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-            .UseServiceProviderFactory(new Jack.Extensions.DependencyInjection.AspNetCore.JackAspNetCoreServiceProviderFactory())
+            .UseServiceProviderFactory(new JackAspNetCoreServiceProviderFactory())
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

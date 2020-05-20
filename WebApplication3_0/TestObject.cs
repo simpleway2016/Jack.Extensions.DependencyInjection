@@ -20,4 +20,9 @@ namespace WebApplication3_0
 
         }
     }
+
+    public class TestObject2
+    {
+
+    }
 }
