@@ -29,7 +29,6 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<object>> GetName([FromQuery]string key)
         {
-
             return new object[] { "value1", _t1 == _t2,key };
         }
 
