@@ -34,7 +34,7 @@ namespace WebApplication3_0.Controllers
             Debug.WriteLine("count:" + count);
             var rng = new Random();
             var threadid = Thread.CurrentThread.ManagedThreadId;
-            if(count < 2)
+            if(count < 8)
                 Thread.Sleep(60000);
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
