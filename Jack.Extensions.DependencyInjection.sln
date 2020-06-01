@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebAppli
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jack.Extensions.DependencyInjection.AspNetCore", "Jack.Extensions.DependencyInjection.AspNetCore\Jack.Extensions.DependencyInjection.AspNetCore.csproj", "{B42FE7C5-EE4C-42A8-B56B-91D2E08EE678}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication3_0", "WebApplication3_0\WebApplication3_0.csproj", "{1A731D63-3A04-41B6-8C78-6CEB28B23AEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication3_0", "WebApplication3_0\WebApplication3_0.csproj", "{1A731D63-3A04-41B6-8C78-6CEB28B23AEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
