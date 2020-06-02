@@ -3,17 +3,27 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>1.0.2.1</Version>
+    <Version>1.0.2.2</Version>
     <PackageProjectUrl>https://github.com/simpleway2016/Jack.Extensions.DependencyInjection.git</PackageProjectUrl>
     <Description>支持字段采用[DependencyInjection]方式支持依赖注入，支持属性依赖注入，支持静态字段采用[DependencyInjection]依赖注入，类如果使用[DependencyInjection(Singleton)]等属性，会被自动注入。
 
-Startup中：
+.net core 2.x  Startup中：
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
              //your codes here ...
 
             return services.BuildJackServiceProvider();
+        }
+
+.net core 3.x Program中：
+        public static IHostBuilder CreateHostBuilder(string[] args) =&gt;
+            Host.CreateDefaultBuilder(args)
+            .UseServiceProviderFactory(new JackAspNetCoreServiceProviderFactory())
+                .ConfigureWebHostDefaults(webBuilder =&gt;
+                {
+                    webBuilder.UseStartup&lt;Startup&gt;();
+                });
         }</Description>
   </PropertyGroup>
 
