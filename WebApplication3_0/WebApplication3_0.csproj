@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="nlog.config" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Jack.Extensions.DependencyInjection.AspNetCore\Jack.Extensions.DependencyInjection.AspNetCore.csproj" />
   </ItemGroup>
 
