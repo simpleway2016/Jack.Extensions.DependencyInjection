@@ -1,0 +1,43 @@
+2020-06-03 09:33:30.345 +08:00 [INF] Now listening on: https://localhost:5001
+2020-06-03 09:33:30.466 +08:00 [INF] Now listening on: http://localhost:5000
+2020-06-03 09:33:30.469 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-06-03 09:33:30.470 +08:00 [INF] Hosting environment: Development
+2020-06-03 09:33:30.471 +08:00 [INF] Content root path: D:\Codes\Jack.Extensions.DependencyInjection\WebApplication3_0
+2020-06-03 09:33:31.859 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/weatherforecast  
+2020-06-03 09:33:31.885 +08:00 [INF] Executing endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-03 09:33:31.921 +08:00 [INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.String Get() on controller WebApplication3_0.Controllers.WeatherForecastController (WebApplication3_0).
+2020-06-03 09:33:31.975 +08:00 [INF] Executing action method WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0) - Validation state: "Valid"
+2020-06-03 09:33:32.029 +08:00 [INF] Executed action method WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 45.4204ms.
+2020-06-03 09:33:32.034 +08:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2020-06-03 09:33:32.043 +08:00 [INF] Executed action WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0) in 115.3786ms
+2020-06-03 09:33:32.046 +08:00 [INF] Executed endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-03 09:33:32.049 +08:00 [INF] Request finished in 192.8624ms 200 text/plain; charset=utf-8
+2020-06-03 09:44:56.712 +08:00 [INF] Now listening on: https://localhost:5001
+2020-06-03 09:44:56.764 +08:00 [INF] Now listening on: http://localhost:5000
+2020-06-03 09:44:56.766 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-06-03 09:44:56.767 +08:00 [INF] Hosting environment: Development
+2020-06-03 09:44:56.768 +08:00 [INF] Content root path: D:\Codes\Jack.Extensions.DependencyInjection\WebApplication3_0
+2020-06-03 09:44:57.753 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/weatherforecast  
+2020-06-03 09:44:57.777 +08:00 [INF] Executing endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-03 09:44:57.812 +08:00 [INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.String Get() on controller WebApplication3_0.Controllers.WeatherForecastController (WebApplication3_0).
+2020-06-03 09:44:57.869 +08:00 [INF] Executing action method WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0) - Validation state: "Valid"
+2020-06-03 09:44:57.879 +08:00 [INF] Executed action method WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 1.7574ms.
+2020-06-03 09:44:57.886 +08:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2020-06-03 09:44:57.894 +08:00 [INF] Executed action WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0) in 75.6455ms
+2020-06-03 09:44:57.896 +08:00 [INF] Executed endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-03 09:44:57.899 +08:00 [INF] Request finished in 149.5617ms 200 text/plain; charset=utf-8
+2020-06-03 09:45:12.324 +08:00 [INF] Application is shutting down...
+2020-06-03 10:06:38.040 +08:00 [INF] Now listening on: https://localhost:5001
+2020-06-03 10:06:38.119 +08:00 [INF] Now listening on: http://localhost:5000
+2020-06-03 10:06:38.121 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-06-03 10:06:38.122 +08:00 [INF] Hosting environment: Development
+2020-06-03 10:06:38.123 +08:00 [INF] Content root path: D:\Codes\Jack.Extensions.DependencyInjection\WebApplication3_0
+2020-06-03 10:06:39.418 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/weatherforecast  
+2020-06-03 10:06:39.444 +08:00 [INF] Executing endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-03 10:06:39.489 +08:00 [INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.String Get() on controller WebApplication3_0.Controllers.WeatherForecastController (WebApplication3_0).
+2020-06-03 10:06:39.567 +08:00 [INF] Executing action method WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0) - Validation state: "Valid"
+2020-06-03 10:06:39.578 +08:00 [INF] Executed action method WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0), returned result Microsoft.AspNetCore.Mvc.ObjectResult in 2.5664ms.
+2020-06-03 10:06:39.584 +08:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2020-06-03 10:06:39.595 +08:00 [INF] Executed action WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0) in 96.5084ms
+2020-06-03 10:06:39.598 +08:00 [INF] Executed endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-03 10:06:39.601 +08:00 [INF] Request finished in 187.4839ms 200 text/plain; charset=utf-8

@@ -1,0 +1,4 @@
+2020-06-03 09:33:31.980 +08:00 [ERR] test
+2020-06-03 09:44:57.874 +08:00 [ERR] test
+10:06:39 [Error] WebApplication3_0.Controllers.WeatherForecastController 
+test

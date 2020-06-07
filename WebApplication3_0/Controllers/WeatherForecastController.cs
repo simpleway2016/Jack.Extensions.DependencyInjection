@@ -20,7 +20,7 @@ namespace WebApplication3_0.Controllers
 
 
         ILogger<WeatherForecastController> _logger { get; set; }
-
+        List<string> list { get; set; }
 
 
         [HttpGet]

@@ -13,6 +13,13 @@ using Microsoft.Extensions.Logging;
 
 namespace WebApplication3_0
 {
+    class TestList<T>:List<T>
+    {
+        public TestList()
+        {
+
+        }
+    }
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -27,6 +34,7 @@ namespace WebApplication3_0
         {
             services.AddControllers();
             services.AddSingleton<TestObject2>();
+            services.AddTransient(typeof(List<>) , typeof(TestList<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
