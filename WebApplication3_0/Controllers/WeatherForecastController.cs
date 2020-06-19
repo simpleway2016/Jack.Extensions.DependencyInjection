@@ -4,7 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
 namespace WebApplication3_0.Controllers
@@ -18,10 +20,17 @@ namespace WebApplication3_0.Controllers
         [Jack.Extensions.DependencyInjection.DependencyInjection]
         TestObject obj2;
 
+        SyncContextObject SyncContextObject { get; set; }
 
         ILogger<WeatherForecastController> _logger { get; set; }
         List<string> list { get; set; }
 
+
+
+        public WeatherForecastController()
+        {
+            
+        }
 
         [HttpGet]
         public string Get()

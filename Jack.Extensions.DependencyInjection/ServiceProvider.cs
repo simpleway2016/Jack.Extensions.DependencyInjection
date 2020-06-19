@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,37 +36,47 @@ namespace Jack.Extensions.DependencyInjection
 
         public object GetService(Type serviceType)
         {
+            return GetService(serviceType,null);
+        }
+
+        public object GetService(Type serviceType,Action<object> onCreated)
+        {
             if (serviceType == typeof(IServiceProvider))
                 return this;
+
+            var httpContextAccessor = _providerSelf.GetService<IHttpContextAccessor>();
+            IServiceProvider curServiceProvider = null;
+            if (httpContextAccessor != null && httpContextAccessor.HttpContext != null)
+                curServiceProvider = httpContextAccessor.HttpContext.RequestServices;
+            if (curServiceProvider == null)
+                curServiceProvider = _providerSelf;
+
+
             var desc = _services.FirstOrDefault(m => m.ServiceType == serviceType);
-            if(desc == null && serviceType.IsGenericType)
+            if (desc == null && serviceType.IsGenericType)
             {
                 desc = _services.FirstOrDefault(m => m.ServiceType.IsGenericType && serviceType.GetGenericTypeDefinition() == m.ServiceType.GetGenericTypeDefinition());
             }
             if (desc == null)
-                return _providerSelf.GetService(serviceType);
+                return curServiceProvider.GetService(serviceType);
 
 
 
             var obj = _provider?.GetService(serviceType);
             if (obj == null)
-                obj = _providerSelf.GetService(serviceType);
+                obj = curServiceProvider.GetService(serviceType);
 
             if (obj == null)
                 return null;
 
+            onCreated?.Invoke(obj);
 
             bool need2add = false;
             if (desc.Lifetime == ServiceLifetime.Singleton && SingletonInstances.Contains(obj) == false)
             {
                 need2add = true;
             }
-
-            if (need2add || desc.Lifetime != ServiceLifetime.Singleton)
-            {
-                InitFieldsAndProperties(obj);
-            }
-
+            
             if (need2add)
             {
                 lock (SingletonInstances)
@@ -73,6 +85,10 @@ namespace Jack.Extensions.DependencyInjection
                 }
             }
 
+            if (need2add || desc.Lifetime != ServiceLifetime.Singleton)
+            {
+                InitFieldsAndProperties(obj);
+            }
             return obj;
         }
 
@@ -88,7 +104,11 @@ namespace Jack.Extensions.DependencyInjection
                         var val = field.GetValue(obj);
                         if (val == null)
                         {
-                            field.SetValue(obj, GetService(field.FieldType));
+                            GetService(field.FieldType, (v) =>
+                            {
+                                field.SetValue(obj, v);
+                            });
+                           
                         }
                     }
                 }
@@ -115,16 +135,12 @@ namespace Jack.Extensions.DependencyInjection
                     continue;
                 }
 
-                var val = GetService(pro.PropertyType);
-                if (val != null)
-                {
-                   
+                GetService(pro.PropertyType,(v)=> {
                     if (method != null)
                     {
-                        method.Invoke(obj, new object[] { val });
+                        method.Invoke(obj, new object[] { v });
                     }
-                }
-
+                });
             }
 
             //静态字段
@@ -138,7 +154,10 @@ namespace Jack.Extensions.DependencyInjection
                         var val = field.GetValue(obj);
                         if (val == null)
                         {
-                            field.SetValue(null, GetService(field.FieldType));
+                            GetService(field.FieldType,(v)=> {
+                                field.SetValue(null,v);
+                            });
+                            
                         }
                     }
                 }
@@ -148,10 +167,6 @@ namespace Jack.Extensions.DependencyInjection
             }
         }
 
-        object _getobj(Type targetType)
-        {
-            return GetService(targetType);
-        }
 
     }
 

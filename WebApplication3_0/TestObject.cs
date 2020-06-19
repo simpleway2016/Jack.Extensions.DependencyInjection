@@ -9,6 +9,7 @@ namespace WebApplication3_0
     [DependencyInjection]
     public class TestObject
     {
+        public SyncContextObject SyncContextObject { get; set; }
         public TestObject()
         {
 
@@ -21,8 +22,25 @@ namespace WebApplication3_0
         }
     }
 
+    [DependencyInjection(DependencyInjectionMode.Scoped)]
+    public class SyncContextObject
+    {
+        static int totalid = 1;
+        static object lockobj = new object();
+        public int id;
+        public SyncContextObject()
+        {
+            lock (lockobj)
+            {
+                id = totalid++;
+            }
+        }
+
+        TestObject TestObject { get; set; }
+    }
+    [DependencyInjection( DependencyInjectionMode.Transient)]
     public class TestObject2
     {
-
+        public SyncContextObject SyncContextObject { get; set; }
     }
 }

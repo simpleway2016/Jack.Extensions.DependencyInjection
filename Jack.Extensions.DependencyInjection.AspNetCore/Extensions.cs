@@ -7,6 +7,7 @@ using System.Reflection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Jack.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Http;
 
 public static class Jack_Extensions_DependencyInjection_AspNetCore
 {
@@ -23,7 +24,7 @@ public static class Jack_Extensions_DependencyInjection_AspNetCore
         if (oldControllerActivator != null)
         {
             services.AddSingleton<ControllerActivatorOriginal>(new ControllerActivatorOriginal() { Original = oldControllerActivator });
-
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.Replace(ServiceDescriptor.Transient<IControllerActivator, Jack.Extensions.DependencyInjection.ControllerActivator>());
         }
        
