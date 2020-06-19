@@ -21,7 +21,7 @@ namespace WebApplication3_0.Controllers
         TestObject obj2;
 
         SyncContextObject SyncContextObject { get; set; }
-
+        IServiceProvider ServiceProvider { get; set; }
         ILogger<WeatherForecastController> _logger { get; set; }
         List<string> list { get; set; }
 
@@ -35,6 +35,9 @@ namespace WebApplication3_0.Controllers
         [HttpGet]
         public string Get()
         {
+            var c1=  ServiceProvider.GetService<SyncContextObject>();
+            var c2 = HttpContext.RequestServices.GetService<SyncContextObject>();
+            var b = c1 == c2;
             _logger.LogError("test");
             return "ok";
         }

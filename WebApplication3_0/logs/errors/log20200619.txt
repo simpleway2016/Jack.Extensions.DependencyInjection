@@ -34,3 +34,11 @@ test
 test
 12:57:11 [Error] WebApplication3_0.Controllers.WeatherForecastController 
 test
+13:08:02 [Error] WebApplication3_0.Controllers.WeatherForecastController 
+test
+13:08:12 [Error] WebApplication3_0.Controllers.WeatherForecastController 
+test
+13:09:29 [Error] WebApplication3_0.Controllers.WeatherForecastController 
+test
+13:09:43 [Error] WebApplication3_0.Controllers.WeatherForecastController 
+test

@@ -87,6 +87,7 @@ public static class Jack_Extensions_DependencyInjection
 
         var provider = new Jack.Extensions.DependencyInjection.ServiceProvider(services, null);
         services.AddSingleton<Jack.Extensions.DependencyInjection.ServiceProvider>(provider);
+        services.AddSingleton<IServiceProvider>(provider);
         provider.Init();
 
         foreach (var t in createInstanceTypes)

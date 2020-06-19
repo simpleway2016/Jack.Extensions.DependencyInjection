@@ -316,3 +316,65 @@
 2020-06-19 12:57:11.205 +08:00 [INF] Executed action WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0) in 7293.5845ms
 2020-06-19 12:57:11.207 +08:00 [INF] Executed endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
 2020-06-19 12:57:11.208 +08:00 [INF] Request finished in 7302.5157ms 200 text/plain; charset=utf-8
+2020-06-19 13:02:56.552 +08:00 [INF] Now listening on: https://localhost:5001
+2020-06-19 13:02:56.620 +08:00 [INF] Now listening on: http://localhost:5000
+2020-06-19 13:02:56.622 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-06-19 13:02:56.623 +08:00 [INF] Hosting environment: Development
+2020-06-19 13:02:56.623 +08:00 [INF] Content root path: C:\Users\Jack\source\repos\Jack.Extensions.DependencyInjection\WebApplication3_0
+2020-06-19 13:02:57.680 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/weatherforecast  
+2020-06-19 13:02:57.708 +08:00 [INF] Executing endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-19 13:02:57.739 +08:00 [INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.String Get() on controller WebApplication3_0.Controllers.WeatherForecastController (WebApplication3_0).
+2020-06-19 13:03:39.189 +08:00 [INF] Now listening on: https://localhost:5001
+2020-06-19 13:03:39.255 +08:00 [INF] Now listening on: http://localhost:5000
+2020-06-19 13:03:39.257 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-06-19 13:03:39.258 +08:00 [INF] Hosting environment: Development
+2020-06-19 13:03:39.259 +08:00 [INF] Content root path: C:\Users\Jack\source\repos\Jack.Extensions.DependencyInjection\WebApplication3_0
+2020-06-19 13:03:40.341 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/weatherforecast  
+2020-06-19 13:03:40.368 +08:00 [INF] Executing endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-19 13:03:40.410 +08:00 [INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.String Get() on controller WebApplication3_0.Controllers.WeatherForecastController (WebApplication3_0).
+2020-06-19 13:04:47.182 +08:00 [INF] Now listening on: https://localhost:5001
+2020-06-19 13:04:47.243 +08:00 [INF] Now listening on: http://localhost:5000
+2020-06-19 13:04:47.245 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-06-19 13:04:47.246 +08:00 [INF] Hosting environment: Development
+2020-06-19 13:04:47.247 +08:00 [INF] Content root path: C:\Users\Jack\source\repos\Jack.Extensions.DependencyInjection\WebApplication3_0
+2020-06-19 13:04:48.304 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/weatherforecast  
+2020-06-19 13:04:48.338 +08:00 [INF] Executing endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-19 13:04:48.389 +08:00 [INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.String Get() on controller WebApplication3_0.Controllers.WeatherForecastController (WebApplication3_0).
+2020-06-19 13:07:39.610 +08:00 [INF] Now listening on: https://localhost:5001
+2020-06-19 13:07:39.672 +08:00 [INF] Now listening on: http://localhost:5000
+2020-06-19 13:07:39.673 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-06-19 13:07:39.674 +08:00 [INF] Hosting environment: Development
+2020-06-19 13:07:39.675 +08:00 [INF] Content root path: C:\Users\Jack\source\repos\Jack.Extensions.DependencyInjection\WebApplication3_0
+2020-06-19 13:07:40.643 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/weatherforecast  
+2020-06-19 13:07:40.671 +08:00 [INF] Executing endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-19 13:07:40.716 +08:00 [INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.String Get() on controller WebApplication3_0.Controllers.WeatherForecastController (WebApplication3_0).
+2020-06-19 13:08:02.097 +08:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2020-06-19 13:08:02.104 +08:00 [INF] Executed action WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0) in 21381.0632ms
+2020-06-19 13:08:02.107 +08:00 [INF] Executed endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-19 13:08:02.109 +08:00 [INF] Request finished in 21469.2256ms 200 text/plain; charset=utf-8
+2020-06-19 13:08:04.102 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/weatherforecast  
+2020-06-19 13:08:04.104 +08:00 [INF] Executing endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-19 13:08:04.106 +08:00 [INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.String Get() on controller WebApplication3_0.Controllers.WeatherForecastController (WebApplication3_0).
+2020-06-19 13:08:12.015 +08:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2020-06-19 13:08:12.016 +08:00 [INF] Executed action WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0) in 7909.0526ms
+2020-06-19 13:08:12.017 +08:00 [INF] Executed endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-19 13:08:12.018 +08:00 [INF] Request finished in 7915.8245ms 200 text/plain; charset=utf-8
+2020-06-19 13:09:27.117 +08:00 [INF] Now listening on: https://localhost:5001
+2020-06-19 13:09:27.170 +08:00 [INF] Now listening on: http://localhost:5000
+2020-06-19 13:09:27.172 +08:00 [INF] Application started. Press Ctrl+C to shut down.
+2020-06-19 13:09:27.172 +08:00 [INF] Hosting environment: Development
+2020-06-19 13:09:27.173 +08:00 [INF] Content root path: C:\Users\Jack\source\repos\Jack.Extensions.DependencyInjection\WebApplication3_0
+2020-06-19 13:09:28.225 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/weatherforecast  
+2020-06-19 13:09:28.250 +08:00 [INF] Executing endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-19 13:09:28.284 +08:00 [INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.String Get() on controller WebApplication3_0.Controllers.WeatherForecastController (WebApplication3_0).
+2020-06-19 13:09:29.922 +08:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2020-06-19 13:09:29.930 +08:00 [INF] Executed action WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0) in 1639.4781ms
+2020-06-19 13:09:29.933 +08:00 [INF] Executed endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-19 13:09:33.972 +08:00 [INF] Request finished in 5749.3712ms 200 text/plain; charset=utf-8
+2020-06-19 13:09:39.708 +08:00 [INF] Request starting HTTP/2 GET https://localhost:5001/weatherforecast  
+2020-06-19 13:09:39.709 +08:00 [INF] Executing endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-19 13:09:39.710 +08:00 [INF] Route matched with {action = "Get", controller = "WeatherForecast"}. Executing controller action with signature System.String Get() on controller WebApplication3_0.Controllers.WeatherForecastController (WebApplication3_0).
+2020-06-19 13:09:43.932 +08:00 [INF] Executing ObjectResult, writing value of type 'System.String'.
+2020-06-19 13:09:43.933 +08:00 [INF] Executed action WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0) in 4220.7477ms
+2020-06-19 13:09:43.935 +08:00 [INF] Executed endpoint 'WebApplication3_0.Controllers.WeatherForecastController.Get (WebApplication3_0)'
+2020-06-19 13:09:47.092 +08:00 [INF] Request finished in 7384.4881ms 200 text/plain; charset=utf-8

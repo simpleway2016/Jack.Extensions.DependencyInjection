@@ -23,7 +23,7 @@ namespace WebApplication3_0
     }
 
     [DependencyInjection(DependencyInjectionMode.Scoped)]
-    public class SyncContextObject
+    public class SyncContextObject:IDisposable
     {
         static int totalid = 1;
         static object lockobj = new object();
@@ -37,6 +37,11 @@ namespace WebApplication3_0
         }
 
         TestObject TestObject { get; set; }
+
+        public void Dispose()
+        {
+            
+        }
     }
     [DependencyInjection( DependencyInjectionMode.Transient)]
     public class TestObject2

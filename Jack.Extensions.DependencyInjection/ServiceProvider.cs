@@ -41,9 +41,6 @@ namespace Jack.Extensions.DependencyInjection
 
         public object GetService(Type serviceType,Action<object> onCreated)
         {
-            if (serviceType == typeof(IServiceProvider))
-                return this;
-
             var httpContextAccessor = _providerSelf.GetService<IHttpContextAccessor>();
             IServiceProvider curServiceProvider = null;
             if (httpContextAccessor != null && httpContextAccessor.HttpContext != null)
