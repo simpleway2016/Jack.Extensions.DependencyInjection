@@ -36,6 +36,9 @@ namespace Jack.Extensions.DependencyInjection
 
         public object GetService(Type serviceType)
         {
+            if (serviceType == typeof(IServiceProvider))
+                return this;
+
             return GetService(serviceType,null);
         }
 
