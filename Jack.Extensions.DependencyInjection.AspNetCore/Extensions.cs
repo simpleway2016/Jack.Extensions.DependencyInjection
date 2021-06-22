@@ -15,7 +15,7 @@ public static class Jack_Extensions_DependencyInjection_AspNetCore
     /// <summary>
     /// 让Jack.Extensions.DependencyInjection支持Controller，此方法应该在BuildJackServiceProvider之前调用
     /// </summary>
-    public static void SupportController(this IServiceCollection services)
+    internal static void SupportController(this IServiceCollection services)
     {
         
 

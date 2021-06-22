@@ -9,6 +9,19 @@ namespace Microsoft.AspNetCore.Hosting
 {
     public class JackAspNetCoreServiceProviderFactory : IServiceProviderFactory<IServiceProvider>
     {
+        Action<IServiceProvider> _buildCallback;
+
+        public JackAspNetCoreServiceProviderFactory()
+        {
+
+        }
+
+        public JackAspNetCoreServiceProviderFactory(Action<IServiceProvider> buildCallback)
+        {
+            this._buildCallback = buildCallback;
+
+        }
+
         Assembly[] _scanAssemblies;
         public JackAspNetCoreServiceProviderFactory(params Assembly[] scanAssemblies)
         {
@@ -17,7 +30,9 @@ namespace Microsoft.AspNetCore.Hosting
         public IServiceProvider CreateBuilder(IServiceCollection services)
         {
             services.SupportController();
-            return services.BuildJackServiceProvider(_scanAssemblies);
+            var provider = services.BuildJackServiceProvider(_scanAssemblies);
+            _buildCallback?.Invoke(provider);
+            return provider;
         }
 
         public IServiceProvider CreateServiceProvider(IServiceProvider containerBuilder)
